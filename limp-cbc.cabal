@@ -17,6 +17,7 @@ executable test
 
   other-modules:       
         Numeric.Limp.Solvers.Cbc.Internal.Foreign
+        Numeric.Limp.Solvers.Cbc.Internal.Wrapper
   build-depends:
         base,
         containers,
