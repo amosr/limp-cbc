@@ -55,8 +55,8 @@ withVecD v f
     , withVecD*     `Vector Double'     -- col upper bounds
 
     , withVecD*     `Vector Double'     -- objective coefficients
-    , withVecD*     `Vector Double'     -- row upper bounds
     , withVecD*     `Vector Double'     -- row lower bounds
+    , withVecD*     `Vector Double'     -- row upper bounds
     }
     -> `()' #}
 
@@ -72,10 +72,10 @@ withVecD v f
     -> `()' #}
 
 
-getColSolution' :: CbcModel -> IO (Vector Double)
-getColSolution' m
+getSolution :: CbcModel -> IO (Vector Double)
+getSolution m
  = do   ncols <- unsafeCoerce <$> withCbcModel m {#call getNumCols#}
-        vd    <- unsafeCoerce <$> withCbcModel m {#call getColSolution#}
+        vd    <- unsafeCoerce <$> withCbcModel m {#call getBestSolution#}
 
         V.generateM ncols (peekElemOff vd)
 
@@ -84,5 +84,19 @@ getColSolution' m
     { withCbcModel* `CbcModel'
     ,               `Double' }
     -> `()' #}
+
+
+{#fun setLogLevel as ^
+    { withCbcModel* `CbcModel'
+    ,               `Int' }
+    -> `()' #}
+
+
+{#fun isProvenInfeasible as ^
+    { withCbcModel* `CbcModel' }
+    -> `Bool' #}
+
+
+
 
 

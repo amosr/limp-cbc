@@ -21,10 +21,7 @@ executable test
   build-depends:
         base,
         containers,
-        lens,
         vector,
-        void,
-        template-haskell,
         limp
 
   ghc-options: -Wall -Wwarn -fno-warn-orphans -O2

@@ -5,8 +5,12 @@ module Numeric.Limp.Solvers.Cbc.Internal.Wrapper
     , F.branchAndBound
     , F.setInteger
     , F.setObjSense
+    , F.setLogLevel
+    , F.getSolution
 
-    , getColSolution
+    , F.isProvenInfeasible
+
+    , setQuiet
     , loadProblem
     ) where
 
@@ -15,7 +19,7 @@ import qualified Numeric.Limp.Solvers.Cbc.Internal.Foreign as F
 import qualified Data.Vector.Storable as V
 import Data.Vector.Storable (Vector)
 
-getColSolution = F.getColSolution'
+setQuiet = flip F.setLogLevel 0
 
 loadProblem
  :: F.CbcModel
@@ -23,7 +27,7 @@ loadProblem
  -> Vector Double -> Vector Double
  -> Vector Double -> Vector Double -> Vector Double
  -> IO ()
-loadProblem model starts indices values collb colub obj rowub rowlb
+loadProblem model starts indices values collb colub obj rowlb rowub
  = let ncols = V.length collb
        nrows = V.length rowlb
    in  do   check_len "colub = ncols" colub ncols
@@ -32,7 +36,7 @@ loadProblem model starts indices values collb colub obj rowub rowlb
             check_len "obj   = ncols" obj   ncols
 
             -- check_len "indices = values" indices (V.length values)
-            F.loadProblem model ncols nrows starts indices values collb colub obj rowub rowlb
+            F.loadProblem model ncols nrows starts indices values collb colub obj rowlb rowub
  where
   check_len e v l
    | V.length v == l

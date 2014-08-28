@@ -52,9 +52,9 @@ int getNumCols (CbcModel* model)
 }
 
 
-const double* getColSolution (CbcModel* model)
+const double* getBestSolution (CbcModel* model)
 {
-    return model->getColSolution();
+    return model->bestSolution();
 }
 
 
@@ -62,5 +62,16 @@ void setObjSense(CbcModel* model, double dir)
 {
     model->solver()->setObjSense(dir);
 }
+
+void setLogLevel(CbcModel* model, int level)
+{
+    model->setLogLevel(level);
+}
+
+int isProvenInfeasible(CbcModel* model)
+{
+    return model->isProvenInfeasible();
+}
+
 
 }

@@ -20,9 +20,13 @@ void    branchAndBound (CbcModel* model);
 
 int getNumCols (CbcModel* model);
 
-const double* getColSolution (CbcModel* model);
+const double* getBestSolution (CbcModel* model);
 
 void setObjSense(CbcModel* model, double dir);
+
+void setLogLevel(CbcModel* model, int level);
+
+int isProvenInfeasible(CbcModel* model);
 
 #ifdef FROM_CPP
 }
