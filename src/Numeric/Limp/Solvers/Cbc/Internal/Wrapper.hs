@@ -9,6 +9,7 @@ module Numeric.Limp.Solvers.Cbc.Internal.Wrapper
     , F.getSolution
 
     , F.isProvenInfeasible
+    , F.getCoinDblMax
 
     , setQuiet
     , loadProblem
@@ -19,6 +20,7 @@ import qualified Numeric.Limp.Solvers.Cbc.Internal.Foreign as F
 import qualified Data.Vector.Storable as V
 import Data.Vector.Storable (Vector)
 
+setQuiet :: F.CbcModel -> IO ()
 setQuiet = flip F.setLogLevel 0
 
 loadProblem

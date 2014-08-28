@@ -8,7 +8,7 @@ typedef struct CbcModel CbcModel;
 CbcModel* newModel();
 void    freeModel(CbcModel* model);
 
-void    loadProblem(CbcModel* model, int nrows,    int ncols,
+void    loadProblem(CbcModel* model, int ncols,    int nrows,
                     int* starts,     int* indices, double* values,
                     double* collb,   double* colub,
                     double* obj,
@@ -27,6 +27,8 @@ void setObjSense(CbcModel* model, double dir);
 void setLogLevel(CbcModel* model, int level);
 
 int isProvenInfeasible(CbcModel* model);
+
+double getCoinDblMax();
 
 #ifdef FROM_CPP
 }

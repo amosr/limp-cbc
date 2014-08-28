@@ -22,8 +22,6 @@ solve p
 
             setQuiet m
 
-            print mr
-
             loadProblem m (_starts mr) (_inds mr)  (_vals mr)
                           (_colLs mr)  (_colUs mr) (_obj mr)
                           (_rowLs mr)  (_rowUs mr)
@@ -42,5 +40,4 @@ solve p
 
              False
               -> do vs <- getSolution m
-                    print vs
                     return $ Right $ makeAssignment p vs

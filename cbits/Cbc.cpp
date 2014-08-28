@@ -19,14 +19,14 @@ void    freeModel(CbcModel* model)
 }
 
 
-void    loadProblem(CbcModel* model, int nrows,    int ncols,
+void    loadProblem(CbcModel* model, int ncols,    int nrows,
                     int* starts,     int* indices, double* values,
                     double* collb,   double* colub,
                     double* obj,
                     double* rowlb, double* rowub)
 {
     model->solver()->loadProblem
-            ( nrows, ncols
+            ( ncols, nrows
             , starts, indices, values
             , collb, colub
             , obj
@@ -73,5 +73,9 @@ int isProvenInfeasible(CbcModel* model)
     return model->isProvenInfeasible();
 }
 
+double getCoinDblMax()
+{
+    return COIN_DBL_MAX;
+}
 
 }

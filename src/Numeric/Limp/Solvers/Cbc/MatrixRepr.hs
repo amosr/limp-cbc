@@ -9,6 +9,7 @@ import qualified Data.Set as S
 
 import qualified Data.Vector.Storable as V
 import Data.Vector.Storable (Vector)
+import Numeric.Limp.Solvers.Cbc.Internal.Wrapper
 
 
 -- | A half-sparse, half-dense matrix (tableau?) representation of a linear program.
@@ -53,11 +54,12 @@ matrixReprOfProgram p
   starts
    = V.fromList
    $ scanl (+) 0
-   $ map numVarsInCon cons
+   $ map length nestedindvals
 
-  inds = V.fromList inds'
-  vals = V.fromList vals'
-  (inds', vals') = unzip $ concatMap getIndVals cons
+  inds = V.fromList $ map fst $ concat nestedindvals
+  vals = V.fromList $ map snd $ concat nestedindvals
+
+  nestedindvals = map getIndVals $ S.toList vs
 
   colLs = V.fromList $ map (fst . boundsOfVar) $ S.toList vs
   colUs = V.fromList $ map (snd . boundsOfVar) $ S.toList vs
@@ -80,9 +82,11 @@ matrixReprOfProgram p
   cons = case _constraints p of
          Constraint cs -> cs
 
-  getIndVals (C1 _ (Linear m) _)
-   = map (\(var, coef) -> (ixOfVar var, unwrapR coef))
-   $ M.toList m
+  getIndVals v
+   = concatMap (\(C1 _ (Linear m) _, ix) ->
+                    case M.lookup v m of
+                    Nothing -> []
+                    Just mul -> [(ix, unwrapR mul)]) (cons `zip` [0..])
 
   numVarsInCon (C1 _ (Linear m) _)
    = M.size m
@@ -96,8 +100,8 @@ matrixReprOfProgram p
 
   boundsOfCon (C1 l _ u) = (lower l, upper u)
 
-  upper = maybe   10000000  unwrapR
-  lower = maybe (-10000000) unwrapR
+  upper = maybe   getCoinDblMax  unwrapR
+  lower = maybe (-getCoinDblMax) unwrapR
 
 
 makeAssignment :: (Ord z, Ord r) => Program z r IntDouble -> Vector Double -> Assignment z r IntDouble

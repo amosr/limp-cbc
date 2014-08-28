@@ -34,7 +34,7 @@ withCbcModel (CbcModel ptr) f
 
 withVecI    :: Vector Int -> (Ptr CInt -> IO b) -> IO b
 withVecI v f
- = V.unsafeWith v (f . castPtr)
+ = V.unsafeWith (V.map fromIntegral v) f
 
 withVecD    :: Vector Double -> (Ptr CDouble -> IO b) -> IO b
 withVecD v f
@@ -74,7 +74,7 @@ withVecD v f
 
 getSolution :: CbcModel -> IO (Vector Double)
 getSolution m
- = do   ncols <- unsafeCoerce <$> withCbcModel m {#call getNumCols#}
+ = do   ncols <- fromIntegral <$> withCbcModel m {#call getNumCols#}
         vd    <- unsafeCoerce <$> withCbcModel m {#call getBestSolution#}
 
         V.generateM ncols (peekElemOff vd)
@@ -97,6 +97,6 @@ getSolution m
     -> `Bool' #}
 
 
-
-
+{#fun pure getCoinDblMax as ^
+    { } -> `Double' #}
 
