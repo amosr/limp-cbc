@@ -5,7 +5,6 @@ import Numeric.Limp.Rep
 import Numeric.Limp.Solvers.Cbc.MatrixRepr
 
 import qualified Data.Vector.Storable as V
-import Data.Vector.Storable (Vector)
 import Numeric.Limp.Solvers.Cbc.Internal.Wrapper
 
 import System.IO.Unsafe

@@ -88,10 +88,6 @@ matrixReprOfProgram p
                     Nothing -> []
                     Just mul -> [(ix, unwrapR mul)]) (cons `zip` [0..])
 
-  numVarsInCon (C1 _ (Linear m) _)
-   = M.size m
-
-  ixOfVar v = S.findIndex v vs
 
   boundsOfVar v
    = case M.lookup v $ _bounds p of
