@@ -1,13 +1,22 @@
 name:                limp-cbc
 version:             0.2.8.6
-synopsis:            Coin/CBC bindings
--- description:         
+synopsis:            bindings for integer linear programming solver Coin/CBC
+description:         very simple binding to external solver, CBC.
+                     CBC is somewhat faster than GLPK, and also has a more permissive licence.
+
 license:             MIT
+license-file:        LICENSE
 author:              Amos Robinson
 maintainer:          amos.robinson@gmail.com
--- category:            
+category:            numeric
 build-type:          Simple
 cabal-version:       >=1.10
+homepage:            https://github.com/amosr/limp-cbc
+
+
+source-repository head
+    type: git
+    location: git://github.com/amosr/limp-cbc.git
 
 library
   hs-source-dirs: src
@@ -20,12 +29,12 @@ library
         Numeric.Limp.Solvers.Cbc.Internal.Foreign
         Numeric.Limp.Solvers.Cbc.Internal.Wrapper
   build-depends:
-        base,
-        containers,
-        vector,
+        base        < 5,
+        containers  == 0.5.*,
+        vector      == 0.10.*,
         limp
 
-  ghc-options: -Wall -Werror -fno-warn-orphans -O2
+  ghc-options: -Wall -fno-warn-orphans
   default-language: Haskell2010
   default-extensions:       TemplateHaskell TypeFamilies FlexibleContexts GeneralizedNewtypeDeriving DataKinds GADTs RankNTypes
 
