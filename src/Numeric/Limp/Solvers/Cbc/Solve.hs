@@ -2,16 +2,13 @@ module Numeric.Limp.Solvers.Cbc.Solve where
 import Numeric.Limp.Canon
 import Numeric.Limp.Rep
 
+import Numeric.Limp.Solvers.Cbc.Error
 import Numeric.Limp.Solvers.Cbc.MatrixRepr
 
 import qualified Data.Vector.Storable as V
 import Numeric.Limp.Solvers.Cbc.Internal.Wrapper
 
 import System.IO.Unsafe
-
-data Error
- = Infeasible
- deriving Show
 
 solve :: (Ord z, Ord r) => Program z r IntDouble -> Either Error (Assignment z r IntDouble)
 solve p

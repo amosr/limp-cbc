@@ -23,6 +23,7 @@ library
   exposed-modules:
         Numeric.Limp.Solvers.Cbc
         Numeric.Limp.Solvers.Cbc.Solve
+        Numeric.Limp.Solvers.Cbc.Error
         Numeric.Limp.Solvers.Cbc.MatrixRepr
 
   other-modules:       
@@ -44,3 +45,12 @@ library
   Include-dirs:     cbits
   includes:         Cbc.h coin/Cbc_C_Interface.h
   C-sources:        cbits/Cbc.cpp
+
+test-suite test
+  type:     exitcode-stdio-1.0
+  hs-source-dirs: examples
+  main-is: Test.hs
+  build-depends: base, limp, limp-cbc
+  default-language: Haskell2010
+  default-extensions:       TemplateHaskell TypeFamilies FlexibleContexts GeneralizedNewtypeDeriving DataKinds GADTs RankNTypes StandaloneDeriving
+
