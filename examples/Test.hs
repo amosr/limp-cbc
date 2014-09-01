@@ -4,6 +4,7 @@ import Base
 import Simple
 import Infeasible
 import Clustering
+import Stupid
 
 
 main :: IO ()
@@ -14,3 +15,5 @@ main
         infeasible
         putStrLn "Clustering"
         clustering
+        putStrLn "Stupid"
+        stupid
