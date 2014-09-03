@@ -1,8 +1,9 @@
 name:                limp-cbc
-version:             0.2.8.6
+version:             0.3.0.0
 synopsis:            bindings for integer linear programming solver Coin/CBC
 description:         very simple binding to external solver, CBC.
                      CBC is somewhat faster than GLPK, and also has a more permissive licence.
+                     relies on coin/cbc version 2.8.6.
 
 license:             MIT
 license-file:        LICENSE
@@ -33,7 +34,7 @@ library
         base        < 5,
         containers  == 0.5.*,
         vector      == 0.10.*,
-        limp
+        limp        == 0.3.*
 
   ghc-options: -Wall -fno-warn-orphans
   default-language: Haskell2010
