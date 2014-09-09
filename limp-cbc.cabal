@@ -9,7 +9,7 @@ license:             MIT
 license-file:        LICENSE
 author:              Amos Robinson
 maintainer:          amos.robinson@gmail.com
-category:            numeric
+category:            Numeric
 build-type:          Simple
 cabal-version:       >=1.10
 homepage:            https://github.com/amosr/limp-cbc
