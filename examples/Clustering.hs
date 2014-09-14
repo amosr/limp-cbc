@@ -13,6 +13,9 @@ import Base
 import Numeric.Limp.Rep
 import Numeric.Limp.Program
 
+import qualified Numeric.Limp.Canon as C
+import qualified Numeric.Limp.Canon.Pretty as C
+
 -- | One for each combinator
 data Node
  = Sum1 | Nor1 | Ys | Sum2 | Nor2
@@ -45,13 +48,10 @@ problem1 dir
 --		+	5f(ys, nor1)		+	5f(sum2, nor1)
 --		+	5f(nor1, nor2)
 objective
- =    f5 Sum1 Ys     .+. f1 Sum1 Sum2
- .+.  f5 Sum1 Nor2   .+. f5 Ys   Sum2
- .+.  f5 Ys   Nor1   .+. f5 Sum2 Nor1
- .+.  f5 Nor1 Nor2
- where
-  f5 a b = flip z 5 $ F a b
-  f1 a b = flip z 1 $ F a b
+ =    f100 Sum1 Ys     .+. f1   Sum1 Sum2
+ .+.  f100 Sum1 Nor2   .+. f100 Ys   Sum2
+ .+.  f100 Ys   Nor1   .+. f1   Sum2 Nor1
+ .+.  f100 Nor1 Nor2
 
 --Subject to	
 --	   f(sum1, ys) 					≤ 				f(sum1, sum2)
@@ -69,38 +69,46 @@ constraints
  :&&  odiff (-5) Sum1 Ys    5
  :&&  odiff (-5) Sum1 Sum2  5
  :&&  odiff   1  Ys   Sum2  5
+ :&&  odiff (-5) Ys   Nor1  5
  :&&  odiff (-5) Nor1 Nor2  5
  :&&  odiff (-5) Sum1 Nor2  5
  :&&  odiff (-5) Sum2 Nor1  5
  :&&  o Sum1 `lt` o Nor1
  :&&  o Sum2 `lt` o Nor2
  where
-  f5 a b = flip z 5 $ F a b
-  f  a b = flip z 1 $ F a b
 
   o  = r1 . O
 
   lt a b = a .+. c1 :<= b
 
   filt a b c
-   =   f a c      :<= f a b
-   :&& f b c      :<= f a b
+   =   f1 a c      :<= f1 a b
+   :&& f1 b c      :<= f1 a b
 
   odiff p a b q
-   = Between (p *. f a b) (o b .-. o a) (q *. f a b)
+   = Between (p *. f1 a b) (o b .-. o a) (q *. f1 a b)
 
 bounds
  = [ binary $ F Sum1 Sum2
    , binary $ F Sum1 Ys
    , binary $ F Sum1 Nor2
    , binary $ F Ys   Sum2
-   , binary $ F Ys   Nor1
-   , binary $ F Sum2 Nor1
+   , binary $ F Nor1 Ys
+   , binary $ F Nor1 Sum2
    , binary $ F Nor1 Nor2
    ]
+
+f100 :: Node -> Node -> Linear VZ VR IntDouble KZ
+f100 a b
+ = 100 *. f1 a b
+
+f1 :: Node -> Node -> Linear VZ VR IntDouble KZ
+f1 a b
+ = z1 $ F (min a b) (max a b)
 
 
 clustering :: IO ()
 clustering
  = do   solve_problem problem1
+        putStr (show $ C.program $ problem1 Minimise)
 
