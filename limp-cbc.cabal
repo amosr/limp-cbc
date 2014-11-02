@@ -303,31 +303,22 @@ library
 
     c-sources:
       cbits/Cbc.cpp
-      cbits/coin/Cbc_ampl.cpp
-      cbits/coin/Cbc_C_Interface.cpp
-      cbits/coin/CbcBranchAllDifferent.cpp
       cbits/coin/CbcBranchCut.cpp
       cbits/coin/CbcBranchDecision.cpp
       cbits/coin/CbcBranchDefaultDecision.cpp
       cbits/coin/CbcBranchDynamic.cpp
       cbits/coin/CbcBranchingObject.cpp
       cbits/coin/CbcBranchLotsize.cpp
-      cbits/coin/CbcBranchToFixLots.cpp
-      cbits/coin/CbcCbcParam.cpp
       cbits/coin/CbcClique.cpp
       cbits/coin/CbcCompareDefault.cpp
       cbits/coin/CbcCompareDepth.cpp
-      cbits/coin/CbcCompareEstimate.cpp
-      cbits/coin/CbcCompareObjective.cpp
       cbits/coin/CbcConsequence.cpp
       cbits/coin/CbcCountRowCut.cpp
       cbits/coin/CbcCutGenerator.cpp
       cbits/coin/CbcCutModifier.cpp
-      cbits/coin/CbcCutSubsetModifier.cpp
       cbits/coin/CbcDummyBranchingObject.cpp
       cbits/coin/CbcEventHandler.cpp
       cbits/coin/CbcFathom.cpp
-      cbits/coin/CbcFathomDynamicProgramming.cpp
       cbits/coin/CbcFixVariable.cpp
       cbits/coin/CbcFollowOn.cpp
       cbits/coin/CbcFullNodeInfo.cpp
@@ -351,7 +342,6 @@ library
       cbits/coin/CbcHeuristicRINS.cpp
       cbits/coin/CbcHeuristicVND.cpp
       cbits/coin/CbcLinked.cpp
-      cbits/coin/CbcLinkedUtils.cpp
       cbits/coin/CbcMessage.cpp
       cbits/coin/CbcMipStartIO.cpp
       cbits/coin/CbcModel.cpp
@@ -376,7 +366,6 @@ library
       cbits/coin/CbcTree.cpp
       cbits/coin/CbcTreeLocal.cpp
       cbits/coin/Cgl012cut.cpp
-      cbits/coin/CglAllDifferent.cpp
       cbits/coin/CglClique.cpp
       cbits/coin/CglCliqueHelper.cpp
       cbits/coin/CglCutGenerator.cpp
@@ -390,12 +379,9 @@ library
       cbits/coin/CglLandPMessages.cpp
       cbits/coin/CglLandPSimplex.cpp
       cbits/coin/CglLandPTabRow.cpp
-      cbits/coin/CglLandPTest.cpp
       cbits/coin/CglLandPUtils.cpp
       cbits/coin/CglLandPValidator.cpp
-      cbits/coin/CglLiftAndProject.cpp
       cbits/coin/CglMessage.cpp
-      cbits/coin/CglMixedIntegerRounding.cpp
       cbits/coin/CglMixedIntegerRounding2.cpp
       cbits/coin/CglOddHole.cpp
       cbits/coin/CglParam.cpp
@@ -406,12 +392,10 @@ library
       cbits/coin/CglRedSplit2Param.cpp
       cbits/coin/CglRedSplitParam.cpp
       cbits/coin/CglResidualCapacity.cpp
-      cbits/coin/CglSimpleRounding.cpp
       cbits/coin/CglStored.cpp
       cbits/coin/CglTreeInfo.cpp
       cbits/coin/CglTwomir.cpp
       cbits/coin/CglZeroHalf.cpp
-      cbits/coin/Clp_C_Interface.cpp
       cbits/coin/ClpCholeskyBase.cpp
       cbits/coin/ClpCholeskyDense.cpp
       cbits/coin/ClpConstraint.cpp
@@ -420,13 +404,9 @@ library
       cbits/coin/ClpDualRowDantzig.cpp
       cbits/coin/ClpDualRowPivot.cpp
       cbits/coin/ClpDualRowSteepest.cpp
-      cbits/coin/ClpDummyMatrix.cpp
-      cbits/coin/ClpDynamicExampleMatrix.cpp
       cbits/coin/ClpDynamicMatrix.cpp
       cbits/coin/ClpEventHandler.cpp
       cbits/coin/ClpFactorization.cpp
-      cbits/coin/ClpGubDynamicMatrix.cpp
-      cbits/coin/ClpGubMatrix.cpp
       cbits/coin/ClpHelperFunctions.cpp
       cbits/coin/ClpInterior.cpp
       cbits/coin/ClpLinearObjective.cpp
@@ -455,7 +435,6 @@ library
       cbits/coin/ClpSimplexOther.cpp
       cbits/coin/ClpSimplexPrimal.cpp
       cbits/coin/ClpSolve.cpp
-      cbits/coin/CoinAlloc.cpp
       cbits/coin/CoinBuild.cpp
       cbits/coin/CoinDenseFactorization.cpp
       cbits/coin/CoinDenseVector.cpp
@@ -480,8 +459,6 @@ library
       cbits/coin/CoinPackedMatrix.cpp
       cbits/coin/CoinPackedVector.cpp
       cbits/coin/CoinPackedVectorBase.cpp
-      cbits/coin/CoinParam.cpp
-      cbits/coin/CoinParamUtils.cpp
       cbits/coin/CoinPostsolveMatrix.cpp
       cbits/coin/CoinPrePostsolveMatrix.cpp
       cbits/coin/CoinPresolveDoubleton.cpp
