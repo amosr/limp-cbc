@@ -294,6 +294,7 @@ library
     extra-libraries:  Cbc Clp CbcSolver Cgl Osi OsiCbc OsiClp OsiCommonTests CoinUtils CoinMP stdc++
     include-dirs:     cbits
     includes:         Cbc.h
+    c-sources:        cbits/Cbc.cpp
   else
     extra-libraries:  stdc++
     include-dirs:     cbits, cbits/coin
