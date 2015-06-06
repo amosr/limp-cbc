@@ -317,6 +317,7 @@ library
       cbits/coin/CbcCutGenerator.cpp
       cbits/coin/CbcCutModifier.cpp
       cbits/coin/CbcDummyBranchingObject.cpp
+      cbits/coin/CbcOrClpParam.cpp
       cbits/coin/CbcEventHandler.cpp
       cbits/coin/CbcFathom.cpp
       cbits/coin/CbcFixVariable.cpp
