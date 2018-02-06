@@ -291,7 +291,8 @@ library
   build-tools:      c2hs
 
   if !flag(embedded)
-    extra-libraries:  Cbc Clp CbcSolver Cgl Osi OsiCbc OsiClp OsiCommonTests CoinUtils CoinMP stdc++
+    extra-libraries:  stdc++
+    pkgconfig-depends: cbc
     include-dirs:     cbits
     includes:         Cbc.h
     c-sources:        cbits/Cbc.cpp

@@ -1,5 +1,5 @@
-#include <coin/CbcModel.hpp>
-#include <coin/OsiClpSolverInterface.hpp>
+#include <CbcModel.hpp>
+#include <OsiClpSolverInterface.hpp>
 
 #define FROM_CPP
 #include "Cbc.h"
