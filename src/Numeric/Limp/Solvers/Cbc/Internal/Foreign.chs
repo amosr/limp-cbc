@@ -73,11 +73,14 @@ withVecD v f
 
 
 getSolution :: CbcModel -> IO (Vector Double)
-getSolution m
+getSolution m@(CbcModel fp)
  = do   ncols <- fromIntegral <$> withCbcModel m {#call getNumCols#}
         vd    <- unsafeCoerce <$> withCbcModel m {#call getBestSolution#}
+        arr <- V.generateM ncols (peekElemOff vd)
 
-        V.generateM ncols (peekElemOff vd)
+        -- The model owns the array, so ensure we keep it around until after we've read the whole array
+        touchForeignPtr fp
+        return arr
 
 
 {#fun setObjSense as ^
