@@ -507,11 +507,19 @@ library
       cbits/coin/OsiSolverBranch.cpp
       cbits/coin/OsiSolverInterface.cpp
 
-test-suite test
+test-suite examples
   type:     exitcode-stdio-1.0
   hs-source-dirs: examples
   main-is: Test.hs
   build-depends: base, limp, limp-cbc
+  default-language: Haskell2010
+  default-extensions:       TemplateHaskell TypeFamilies FlexibleContexts GeneralizedNewtypeDeriving DataKinds GADTs RankNTypes StandaloneDeriving
+
+test-suite test
+  type:     exitcode-stdio-1.0
+  hs-source-dirs: test
+  main-is: Main.hs
+  build-depends: base, limp, limp-cbc, tasty, tasty-quickcheck, QuickCheck
   default-language: Haskell2010
   default-extensions:       TemplateHaskell TypeFamilies FlexibleContexts GeneralizedNewtypeDeriving DataKinds GADTs RankNTypes StandaloneDeriving
 
