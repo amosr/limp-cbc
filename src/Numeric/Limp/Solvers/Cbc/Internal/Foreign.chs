@@ -4,8 +4,6 @@ module Numeric.Limp.Solvers.Cbc.Internal.Foreign where
 import Foreign
 import Foreign.C
 
-import Control.Applicative
-
 import qualified Data.Vector.Storable as V
 import Data.Vector.Storable (Vector)
 
