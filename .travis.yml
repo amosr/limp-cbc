@@ -1,0 +1,48 @@
+language: minimal
+dist: bionic
+sudo: false
+git:
+  submodules: false
+
+script:
+- cabal v2-update
+- cabal v2-build --flags="${FLAGS}"
+- cabal v2-haddock
+
+before_cache:
+- rm -fv $HOME/.cabal/packages/hackage.haskell.org/build-reports.log
+- rm -fv $HOME/.cabal/packages/hackage.haskell.org/00-index.tar
+
+matrix:
+  fast_finish: true
+  include:
+  - env: FLAGS=
+    addons:
+      apt:
+        sources:
+        - sourceline: deb http://ppa.launchpad.net/hvr/ghc/ubuntu xenial main
+          key_url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x063dab2bdc0b3f9fcebc378bff3aeacef6f88286
+        packages:
+        - ghc-8.4.3
+        - cabal-install-2.4
+  - env: FLAGS=embedded
+    addons:
+      apt:
+        sources:
+        - sourceline: deb http://ppa.launchpad.net/hvr/ghc/ubuntu xenial main
+          key_url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x063dab2bdc0b3f9fcebc378bff3aeacef6f88286
+        packages:
+        - ghc-8.4.3
+        - cabal-install-2.4
+        - coinor-libcbc-dev
+
+cache:
+  directories:
+  - $HOME/.cabsnap
+  - $HOME/.cabal/packages
+  - $HOME/.ghc
+
+before_install:
+- unset CC
+- export PATH=/opt/ghc/$GHCVER/bin:/opt/cabal/$CABALVER/bin:$PATH
+
